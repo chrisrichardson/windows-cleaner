@@ -32,8 +32,8 @@ jobs:
         pip install flake8 pytest
         pip install git+https://github.com/FEniCS/ufl
         git clone https://github.com/FEniCS/basix
-	cd basix/cpp
-	cmake -DBLAS_LIBRARIES=$BLAS_LIBRARY . && make -j 2
+        cd basix/cpp
+        cmake -DBLAS_LIBRARIES=$BLAS_LIBRARY . && make -j 2
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
