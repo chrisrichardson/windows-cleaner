@@ -28,14 +28,12 @@ jobs:
       run: |
         git clone --depth 1 https://github.com/scipy/scipy
         export BLAS_LIBRARY=`python scipy/tools/openblas_support.py`
-        mkdir -p $PWD/openblas/lib
-        mv $BLAS_LIBRARY $PWD/openblas/lib
-        export CMAKE_PREFIX_PATH=$PWD/openblas
-        echo $CMAKE_PREFIX_PATH
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install git+https://github.com/FEniCS/ufl
-        pip install git+https://github.com/FEniCS/ffcx
+        git clone https://github.com/FEniCS/basix
+	cd basix/cpp
+	cmake -DBLAS_LIBRARIES=$BLAS_LIBRARY . && make -j 2
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
