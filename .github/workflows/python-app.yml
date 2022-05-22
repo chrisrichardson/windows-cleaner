@@ -27,8 +27,8 @@ jobs:
       shell: bash
       run: |
         git clone https://github.com/scipy/scipy
-        export BLAS_DIR=`python scipy/tools/openblas_support.py`
-        echo $BLAS_DIR
+        export CMAKE_PREFIX_PATH=`python scipy/tools/openblas_support.py`
+        echo $CMAKE_PREFIX_PATH
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install git+https://github.com/FEniCS/ufl
