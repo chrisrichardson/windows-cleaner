@@ -24,8 +24,11 @@ jobs:
       with:
         python-version: "3.10"
     - name: Install dependencies
+      shell: bash
       run: |
-        choco install openblas -y
+        git clone https://github.com/scipy/scipy
+	export BLAS_DIR=`python scipy/tools/openblas_support.py`
+	echo $BLAS_DIR
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install git+https://github.com/FEniCS/ufl
