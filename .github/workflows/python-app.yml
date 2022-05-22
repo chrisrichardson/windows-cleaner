@@ -33,7 +33,7 @@ jobs:
         pip install git+https://github.com/FEniCS/ufl
         git clone https://github.com/FEniCS/basix
         cd basix/cpp
-        cmake -DBLAS_LIBRARIES=$BLAS_LIBRARY . && make -j 2
+        cmake -DDOWNLOAD_XTENSOR_LIBS=ON -DBLAS_LIBRARIES=$BLAS_LIBRARY . && make -j 2
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
